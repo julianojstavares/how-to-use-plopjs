@@ -4,6 +4,11 @@ O Plop é uma ferramenta (ou microframework) para geração de códigos a partir
 
 Neste repositório você vai achar alguns casos de uso criados com fins didáticos.
 
+Você precisa do Node.js instalado na sua máquina para que tudo funcione como o esperado.
+
+Clone o projeto, execute a instalação dos pacotes com o comando 'npm i' e depois execute o comando 'npm run plop' para executar o projeto.
+Aí é só seguir as opções que surgirão no terminal.
+
 Site oficial: https://plopjs.com/
 
 ## Por qual motivo devo usar o Plop ?
