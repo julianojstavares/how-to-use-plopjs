@@ -2,6 +2,8 @@
 
 O Plop é uma ferramenta (ou microframework) para geração de códigos a partir de templates. 
 
+Neste repositório você vai achar alguns casos de uso criados com fins didáticos.
+
 Site oficial: https://plopjs.com/
 
 ## Por qual motivo devo usar o Plop ?
