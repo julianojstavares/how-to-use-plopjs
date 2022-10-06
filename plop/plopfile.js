@@ -2,6 +2,7 @@ const arquivoUnico = require("./generators/arquivoUnico");
 const multiplaEscolha = require("./generators/multiplaEscolha");
 const multiplosArquivos = require("./generators/multiplosArquivos");
 const opcoesExternas = require("./generators/opcoesExternas");
+const modulo = require("./generators/modulo");
 
 
 module.exports = plop => {
@@ -10,5 +11,6 @@ module.exports = plop => {
     multiplosArquivos(plop);
     multiplaEscolha(plop);
     opcoesExternas(plop);
+    modulo(plop);
 
 }
