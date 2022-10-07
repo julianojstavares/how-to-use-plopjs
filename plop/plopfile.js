@@ -8,6 +8,8 @@ const adicionarLinhas = require("./generators/adicionarLinhas");
 
 module.exports = plop => {
 
+    plop.setWelcomeMessage("Olá! Seja bem-vindo ao Plop! O que deseja fazer?");
+
     arquivoUnico(plop);
     multiplosArquivos(plop);
     multiplaEscolha(plop);

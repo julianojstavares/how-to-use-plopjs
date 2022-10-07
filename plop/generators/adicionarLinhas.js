@@ -1,15 +1,4 @@
-const prompts = [
-    {
-        type: "checkbox",
-        name: "opcoes",
-        message: "O que você quer adicionar no arquivo?",
-        choices: [
-            { name: "Comentário", value: "comment" },
-            { name: "Função", value: "function" },
-            { name: "Variável", value: "variable" },
-        ],
-    },
-];
+const myPrompts = require('../prompts/customPrompt');
 
 const addComment = {
     type: 'append',
@@ -18,65 +7,72 @@ const addComment = {
     templateFile: 'templates/appendExemplo/comentario.hbs',
 };
 
+const addFunction = {
+    type: 'append',
+    pattern: 'PLOP-INSERT-FUNCTION',
+    path: '../src/index.ts',
+    templateFile: 'templates/appendExemplo/funcao.hbs',
+};
 
+const addVariable = {
+    type: 'append',
+    pattern: 'PLOP-INSERT-VAR',
+    path: '../src/index.ts',
+    templateFile: 'templates/appendExemplo/variavel.hbs',
+};
 
-let actions = [
-    // {
-    //     type: 'append',
-    //     pattern: 'PLOP-INSERT-COMMENT',
-    //     path: '../src/index.ts',
-    //     templateFile: 'templates/appendExemplo/comentario.hbs',
-    // },
-    function customAction(answers) {
-        // console.log(`func ${JSON.stringify(answers.opcoes)}`);
+function dynamicActions(data) {
 
-        const opcoes = answers.opcoes;
+    const opcoes = data.opcoes;
 
-        if(opcoes.length > 0) {
+    let actions = [];
 
-           opcoes.forEach(option => {
+    if(opcoes.length > 0) {
+    
+        opcoes.forEach(option => {
 
-                switch (option) {
+             switch (option) {
 
-                    case 'comment':
-                        console.log('@comment');
-                        actions = actions.concat([{
-                            type: 'append',
-                            pattern: 'PLOP-INSERT-COMMENT',
-                            path: '../src/index.ts',
-                            templateFile: 'templates/appendExemplo/comentario.hbs',
-                        }])
-                        break;
-                    case 'function':
-                        console.log('@function');
-                        break;
-                    case 'variable':
-                        console.log('@variable');
-                        break;
-                
-                    default:
-                        break;
+                 case 'comment':
+                     actions.push(addComment);
+                     break;
+                 case 'function':
+                     actions.push(addFunction);
+                     break;
+                 case 'variable':
+                     actions.push(addVariable);
+                     break;
+                 default:
+                     break;
 
-                }
+             }
 
-           });
+        });
 
-        }
+     }
 
-    }
-]
+    return actions;
+
+}
+
+function printData(data) {
+
+    console.log("Dados recebidos para uso em ações: " + JSON.stringify(data));
+
+    let actions = [];
+    return actions;
+}
+
 
 function adicionarLinhas(plop) {
 
-    plop.setGenerator('Adicionar linhas', {
-        description: 'Insere linhas em um arquivo existente',
-        prompts, 
-        actions: function (data) {
-            console.log(data);
-            console.log(actions);
-            return actions;
-          }
-    });
+    plop.setGenerator('Adicionar Linhas', {
+
+		description: 'another test using an actions function',
+		prompts: myPrompts,
+		actions: (data) => printData(data),
+
+	});
 
 }
 
