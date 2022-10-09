@@ -51,15 +51,18 @@ function dynamicActions(data) {
 
      }
 
+    actions.concat(printData(data));
+
     return actions;
 
 }
 
 function printData(data) {
 
-    console.log("Dados recebidos para uso em ações: " + JSON.stringify(data));
+    console.log("Dados recebidos para uso em ações: " + JSON.stringify(data, null, 3));
 
-    let actions = [];
+    const actions = [];
+
     return actions;
 }
 
@@ -70,7 +73,7 @@ function adicionarLinhas(plop) {
 
 		description: 'another test using an actions function',
 		prompts: myPrompts,
-		actions: (data) => printData(data),
+		actions: (data) => dynamicActions(data),
 
 	});
 

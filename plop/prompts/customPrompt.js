@@ -39,7 +39,7 @@ async function promptComentario(inquirer, answers = {}) {
 
 }
 
-function promptFuncao(inquirer, answers = {}) {
+async function promptFuncao(inquirer, answers = {}) {
 
 	const prompts = inquirer.prompt([
 		{
@@ -49,15 +49,15 @@ function promptFuncao(inquirer, answers = {}) {
 		}
 	]);
 
-	prompts.then((newAnswers) => {
-		Object.assign(newAnswers, answers);
-	});
+	const newAnswers = await prompts;
 
-	return prompts;
+	Object.assign(newAnswers, answers);
+
+	return newAnswers;
 
 }
 
-function promptVariavel(inquirer, answers = {}) {
+async function promptVariavel(inquirer, answers = {}) {
 
 	const prompts = inquirer.prompt([
 		{
@@ -67,11 +67,11 @@ function promptVariavel(inquirer, answers = {}) {
 		}
 	]);
 
-	prompts.then((newAnswers) => {
-		Object.assign(newAnswers, answers);
-	});
+	const newAnswers = await prompts;
 
-	return prompts;
+	Object.assign(newAnswers, answers);
+
+	return newAnswers;
 
 }
 
@@ -92,8 +92,8 @@ module.exports = async function customPrompts (inquirer) {
 
 		for (const option of options) {
 
-			await execOptions[option](inquirer, prompts);
-			
+			const result = await execOptions[option](inquirer, prompts);
+			Object.assign(prompts, result);
 		}
 
 	 }
